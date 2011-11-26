@@ -1,0 +1,249 @@
+\documentclass[a4paper]{report}
+\usepackage{kotex}
+\usepackage{ifpdf}
+\usepackage{indentfirst}
+\ifpdf
+	\input glyphtounicode\pdfgentounicode=1 %type 1 font사용시
+	\usepackage[pdftex,unicode]{hyperref} % delete me
+	\usepackage[pdftex]{graphicx}
+	\usepackage[pdftex,svgnames]{xcolor}
+\else
+	\usepackage[dvipdfmx,unicode]{hyperref} % delete me
+	\usepackage[dvipdfmx]{graphicx}
+	\usepackage[dvipdfmx,svgnames]{xcolor}
+\fi
+
+\title{전기공학부 논문 \LaTeX 템플릿 매뉴얼}
+
+\author{어느 대학원생}
+
+\begin{document}
+
+\tableofcontents
+
+\chapter{사용법}
+\TeX, \LaTeX, kotex의 기본적인 사용법은 인터넷 등을 참고하자.
+여기서는 snueethesis.cls의 사용법만 간단히 소개할 것이다.
+이 템플릿은 pdflatex에 최적화되어 있다.
+아마도 latex과 dvipdfmx의 조합도 사용할 수 있을 것이다.
+그런데, pdflatex을 쓰면 pdf의 종이 크기가 알아서
+될 것이고, dvipdfmx를 쓰면 별도의 옵션을 주고 사용해야 할 것이므로
+편하게 pdflatex을 쓰는 것을 권장한다.
+개인적으로 latex, dvips, ps2pdf의 조합은 별로 권장하지 않는다.
+혹시 xelatex을 사용하겠다면 고칠 것이 조금 있을 것 같다.
+\section{컴파일}
+간단하게 pdflatex을 하자. 경우에 따라 두 번 이상 컴파일해야 한다.
+\section{패키지 의존성}
+가급적이면 의존 패키지를 줄이는 방향으로 갔다.
+
+이 양식은 kotex 패키지를 사용한다.
+영문 논문에서도 한글을 써야하기 때문에 그냥 넣었다.
+사실 kotex 없이 한글을 사용하는 것도 불가능한 것은
+아닌 것으로 알지만, 여기서는 편의를 위해 kotex 패키지를 사용하고 있다.
+
+그리고 indentfirst, ifpdf 패키지를 사용한다.
+문제가 된다면 패키지 로드 부분을 주석처리하면 된다.
+
+몇몇 패키지는 cls에서 로드하지 않고 tex 파일에서
+직접 로드하게 만들었으니, sample.tex도 잘 참고하자.
+
+hyperref 패키지는 인쇄시에는 도움도
+안 되고, 오히려 번거로운 사태가 발생할 수도 있으니
+학위 논문을 위해서라면 그냥 안 쓰는 편이
+나을 수도 있다.
+\section{기타}
+제공되는 sample.tex을 보면
+사용법을 대충 이해할 수 있을 것 같다.
+
+페이지 번호 양식을
+클래스 파일에서 처리하는 것보다 tex에서
+처리하는 것이 여러모로 나은 점이
+있어서 tex에서 처리하도록 하였다.
+아무튼 pagenumbering 명령 이전에
+cleardoublepage 명령을 넣어야
+홀짝수가 제대로 맞는다.
+단면을 사용하는 경우에도 이렇게 하자.
+
+저자 명령인 \textbackslash author와 \textbackslash author*의 경우,
+전자는 스페이스를 안 넣은 이름, 후자는 스페이스를 넣은 이름이다.
+하지만 영문 이름과 한글 이름을 섞어 쓰고 싶은 경우도 있다.
+예를 들면 표지에는 영문 이름, 인준지에는 한글 이름을 넣고
+싶을 수도 있다.
+이 경우 다음과 같이 중간에 \textbackslash author를 재정의하면 간단하게
+해결된다!
+\textbackslash author{Name} \textbackslash author*{Name}
+\textbackslash makefrontcover
+\textbackslash author{이름} \textbackslash authro*{이 름}
+\textbackslash makeapproval
+
+\chapter{석박사 논문 양식}
+
+전기공학부 졸업논문 양식\cite{under,grad}\을 최대한 따랐다.
+또한, thesisonline의 양식 역시 참고했다.
+두 양식이 엇갈리는 경우가 많은데,
+이 경우 대체로 전기공학부 양식을 우선하였다.
+양식에 명시되지 않은 것은 저자 마음대로 하였다.
+사실, 양식에 모든 부분이 세밀하고 엄밀하게
+정의되어 있는 것은 아니다.
+상황에 따라 클래스 파일을 직접 고치는 일이
+필요할 수도 있을 것이다.
+
+최대한 가벼운 클래스 파일을 만드는 것을
+목표로 하였고, 의존 패키지를 최소화하였다.
+
+버그를 제보해주시면 매우 감사하겠다.
+
+\section{표지}
+영문 논문의 인준지 양식은 \cite{grad}의 pp.~12--13,
+국문 논문의 인준지 양식은 \cite{grad}의 pp.~33,~35을 참고하였다.
+
+상단 여백 3cm, 좌우 여백 2cm, 하단 여백 3cm으로 맞췄다.
+
+\section{원문제공 동의서}
+이건 안 만들었다. 중도에 제출하는 4부 중 단 한 부에만
+동의서가 들어가는데 이것 때문에 제본을 따로 해야
+되는지 여부를 잘 모르겠다.
+
+\section{인준지}
+영문 논문의 인준지 양식은 \cite{grad}의 pp.14--15,
+국문 논문의 인준지 양식은 \cite{grad}의 pp.36--37을 참고하였다.
+
+인준지부터는 좌우 여백이 늘어난다.
+상단 여백 3cm, 좌우 여백 2.5cm, 하단 여백 2cm으로 맞췄다.
+표지의 좌우 여백과 인준지의 좌우 여백이 다르기 때문에
+제목의 줄바꿈 위치가 달라질 수 있다.
+같은 위치에서 제목 줄바꿈을 하려면 title을 정의할 때
+적절한 위치에 \textbackslash\textbackslash를 넣자.
+
+이상한 것이 국문 양식에서는 한글 제목 22pt, 영문 제목 16pt가 되고,
+영문 양식에서는 영문 제목과 한글 제목이 모두 16pt라는 것이다.
+일단 양식을 충실이 따랐다.
+
+그리고 국문 양식에서는 일부 여백이 명시되지 않았고,
+영문 양식에는 0.5cm로 되어 있는데, 이것은 0.5cm으로 통일하였다.
+그러나 국문 양식은 대충 봐도 간격이 0.5cm이 아니다.
+정확하게 정의되지 않은 것 같은데, 필요에 따라
+알아서 수정해야 될지도 모르겠다.
+
+인준지에는 날짜가 두 개 들어가는데 
+\textbackslash submissiondate와 \textbackslash approvaldate이다.
+영문 양식이든 한글 양식이든 이 날짜는 한글을 사용하는 것으로
+되어 있는 것으로 보인다.
+
+\section{본문}
+상단 여백 3cm, 좌우 여백 2.5cm, 하단 여백 3.5cm으로 맞췄다.
+
+\section{감사의 글}
+규정에 따르면 학교에 제출하는 논문에는 감사의 글을 넣지 않는다고
+적혀 있는데, 감사의 글을 넣고 제본한 논문을 본 것 같기도 하다.
+
+\section{이름}
+이름은 조금 귀찮은 것이 멋을 부리기 위해 스페이스를
+중간에 넣어두는 경우가 있다. 이것은 *이 붙은 명령과
+안 붙은 명령으로 구분하고 있다.
+
+\section{들여 쓰기}
+영문 양식에서는 첫 단락을 들여 쓰기하지 않고
+국문 양식에서는 첫 단락을 들여 쓰기하도록
+만들었다.
+인위적으로 \textbackslash noindet를 주지 않아도
+그렇게 될 것이다.
+그리고 옵션으로 indentfirst와 noindentfirst를 제공하기도 한다.
+
+\section{챕터 스타일과 섹션 스타일}
+국문 논문 양식에서 장 제목은 16pt로 해야 한다.
+그러나 ``목차'', ``표 목차'', ``그림 목차'' 등은
+22pt로 해야한다. 그런데 잘 생각해보면 ``목차''
+같은 것도 특별한 장 제목 아닌가?
+실제로 \LaTeX에서는 이 상황에서 \textbackslash chater*을
+사용한다. 아무튼 
+이 양식을 맞추기 위해 \textbackslash chapter*을
+재정의하였는데, 혹시라도 본문 중간에 숫자 없는 장
+제목을 사용하면 양식의 통일성을 해치게 되는 문제가 있다.
+
+그리고 국문 논문의 영문 초록에서는 ``Abstract''를 22pt로
+적고 있는데, 영문 논문의 국문 초록에서는 ``초록''을
+16pt로 적고 있다. 이런 상황을 보면 국문 장 제목은
+16pt, 영문 장 제목은 22pt인데, ``목차'' 류만 특이하게
+국문에서도 22pt라고 해야 하나?
+
+그리고 국문 양식에서는 ``감사의 글''에 16pt를 사용하고 있다.
+영문 양식에서는 규정이 없느데 22pt를 쓰는 게 맞겠지...
+
+그리고 장 제목과 절 제목에서 줄 간격을 0으로 하라고
+되어 있는데, 줄 간격 0은 오타인 것 같아서
+1.0으로 해두었다. 혹시 1.0이 너무 좁아
+보인다면 수정하면 된다.
+
+장 제목의 위, 아래 간격은 나온대로 맞추었다.
+정확히는 줄 간격 때문에 지정된 크기보다
+간격이 조금 더 벌어진다. 예를 들어
+장 제목 아래로 2cm를 두어야 하는데,
+본문 자체에서도 줄 간격이 있으므로,
+자로 재보면 2cm보다 약간 더 커진다는
+것이다. 이것은 doc로 제공되는 템플릿에서도
+마찬가지인데, 자로 재보면 2cm보다 약간 크다.
+그런 관계로 억지로 2cm을 정확히 맞추지는 않았다.
+그러나 영문 서식의 경우 ``Chapter'' 위로
+종이 여백을 포함하여 6cm을 두게 되어 있는데,
+이것은 워드 템플릿에서 자로 재보면
+딱 6cm이 된다. 이런 것들은 6cm을 정확히 맞추었다.
+
+절 제목의 위, 아래 간격에도 깨알같은 규정이
+있으나(\cite{grad} pp.~22--23) 너무 깨알같은 관계로 이건 조정하지 않았다.
+이것 역시 줄간격을 제외하고 0.6cm등을 맞추라는 의도
+같은데, 줄간격을 넣고 하다보면 어긋날 수 밖에 없다.
+그리고 \TeX에서는 stretchability와 shrinkability를
+사용해서 간격을 조절하고 있는데, 억지로 맞추는
+것이 필자의 능력에 벗어나는 일이기도 하다.
+(기존의 템플릿에서도 이것까지 고치진
+않은 것은 마찬가지였다.)
+
+\section{글자 크기와 줄 간격}
+학부에서 제공하는 한컴 한글 양식과 MS 워드 양식도
+글자 크기나 줄 간격이 완벽하게 동일하지는 않다.
+줄간격은 폰트에 따라, 영문이냐 한글이냐에 따라
+다르게 나오는 경우도 있다. 줄간격이 이상해 보인다면
+필요에 따라 직접 고치면 될 것이다.
+아무튼 한 페이지에 25행이 나오게 맞추긴
+했는데 완벽할지는 모르겠다\footnote{사실
+25행을 맞추면 170\%가 아니다.}.
+아무튼 cls 파일에서 linespread 값을
+바꾸면 원하는 본문 줄 간격을
+얻을 수 있다.
+
+\section{표와 그림}
+LaTeX에서는 원래 표와 그림 이름의 delimiter로 세미콜론이 들어간다.
+하지만 \cite{grad}의 양식에는 안 들어간다.
+일단 양식대로 세미콜론을 제거하였는데,
+구분자가 없는 것이 약간 어색해 보인다.
+
+그 외에 caption의 정렬이나 마침표 사용에 대해서도
+규정이 있는데 클래스 파일에서 처리할 문제는 아니다.
+
+\section{목차}
+표 목차와 그림 목차 중 어느 것이 먼저 와야 하는
+문제가 있는데 영문 양식과 국문 양식에서 순서가 다르다.
+아무튼 이것을 바꾸려면 listoffigures와 listoftables
+순서만 바꾸면 되므로 어렵지 않다.
+
+목차 양식을 맞추기 위해 tocloft 패키지를 사용했는데,
+이 패키지는
+subfigure 패키지 사용 여부에 따라 옵션을 다르게 주어야 한다.
+이런 저런 문제로 cls에 넣지 않고 따로 적었다.
+
+\begin{thebibliography}{00}
+\addcontentsline{toc}{chapter}{\bibname}
+
+\bibitem{under} 서울대학교 공과대학 전기공학부,
+학사 학위논문 작성지침,
+\url{http://eei.snu.ac.kr/bbs/view.php?id=pds&no=156}
+
+\bibitem{grad} 서울대학교 공과대학 전기공학부,
+석사,박사 학위논문 작성지침,
+\url{http://eei.snu.ac.kr/bbs/view.php?id=pds&no=170}
+
+\end{thebibliography}
+
+\end{document}
+

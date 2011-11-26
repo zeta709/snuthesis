@@ -1,0 +1,99 @@
+%% 페기된 코드 모음
+%% 만들었다가 버린 코드에 대해
+%% 해당 코드가 안 좋은 이유를 적었다.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% pagenumbering
+%% 아래 코드처럼 페이지 번호를 처리하는 것은 지저분하다.
+%% cls에서 page numbering을 처리하지 말고
+%% tex에서 처리하는 것이 깔끔하다.
+%% 1. 특히 hyperref를 사용할 경우
+%% pdf 문서에서 'i'같은 페이지 번호가 그대로 사용된다.
+%% cover에서 페이지 번호가 1, 2, 3, 4 이렇게 가다가
+%% 초록과 목차에서 i, ii, iii으로 가고,
+%% 본문에서 다시 1, 2, 3, 4로 가면
+%% 페이지 1이 중복되는 문제가 발생한다.
+%% 그래서 표지와 인준지에서 페이지 번호를
+%% I, II, III으로 붙이고, pagestyle을 empty로 하는
+%% 방법을 사용했다.
+%% 그런데 이렇게 하면 유지해야 될
+%% 카운터가 세 개가 되고 if 구조도 복잡해 진다.
+%% 2. 어차피 목차 등은 가장 앞에만 올 것이고
+%% 그 이후에 본문이 오는데, 굳이 이렇게
+%% 페이지 번호를 왔다갔다 할 수 있는
+%% 명령어를 만들 필요가 없다.
+\newcounter{@snu@pageroman}
+\newcounter{@snu@pagearabic}
+\setcounter{@snu@pageroman}{1}
+\newif\if@snu@isarabicpagenumbering
+\@snu@isarabicpagenumberingtrue
+\newcommand{\@snu@changepagenumbering}{%
+	\if@snu@isarabicpagenumbering
+		\@snu@isarabicpagenumberingfalse
+		\setcounter{@snu@pagearabic}{\value{page}}
+		\pagenumbering{roman}
+		\setcounter{page}{\value{@snu@pageroman}}
+	\else
+		\@snu@isarabicpagenumberingtrue
+		\setcounter{@snu@pageroman}{\value{page}}
+		\pagenumbering{arabic}
+		\setcounter{page}{\value{@snu@pagearabic}}
+	\fi
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% abstract 등에서 사용하는 코드
+%% 처음에는 직접 스타일을 정해주었지만,
+%% 사실 chpater* 명령을 쓰면 훨씬
+%% 쉽게 처리되는 문제다. 처음부터
+%% 이 생각을 못 하는 바람에 삽질한 것.
+%% 참고사항
+%% @afterindentfalse, @afterheading은
+%% 첫 단락 들여쓰기를 방지하기 위한 용도이다.
+%% 단순히 \noindent로 하면 indentfirst 패키지의 영향을
+%% 받지 않게 되므로 이렇게 하였다.
+\renewenvironment{abstract}{%
+	\if@openright \cleardoublepage
+	\else \clearpage \fi
+	\@afterindentfalse
+	\phantomsection
+	\addcontentsline{toc}{chapter}{\abstractname}{%
+		\centering
+		\normalfont
+		\linespread{1.0}
+		\fontsize{22pt}{22pt}\selectfont
+		\textbf{\abstractname}\par\nobreak
+	}
+	\vspace{2cm}
+	\@afterheading
+}{%
+	%% ...
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% pagenumbering 방식을 바꾸면서
+%% 불필효한 코드가 되었다.
+\let\@snu@oldtoc=\tableofcontents
+\let\@snu@oldlof=\listoffigures
+\let\@snu@oldlot=\listoftables
+\renewcommand\tableofcontents{
+	%\cleardoublepage
+	%%\@snu@changepagenumbering
+	\@snu@oldtoc
+	%\newpage
+	%%\@snu@changepagenumbering
+}
+\renewcommand\listoffigures{
+	%\cleardoublepage
+	%%\@snu@changepagenumbering
+	\@snu@oldlof
+	%\newpage
+	%%\@snu@changepagenumbering
+}
+\renewcommand\listoftables{
+	%\cleardoublepage
+	%%\@snu@changepagenumbering
+	\@snu@oldlot
+	%\newpage
+	%%\@snu@changepagenumbering
+}

@@ -1,0 +1,218 @@
+% 서울대학교 전기공학부 (전기컴퓨터공학부) 석사ㅡ 박사 학위논문
+% LaTeX 양식 샘플
+\RequirePackage{fix-cm} % documentclass 이전에 넣는다.
+% oneside : 단면 인쇄용
+% twoside : 양면 인쇄용
+% ko : 국문 논문 작성
+% master : 석사
+% phd : 박사
+% openright : 챕터가 홀수쪽에서 시작
+\documentclass[oneside,ko,phd]{snueethesis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 목차 양식을 변경하는 코드
+%% subfigure (subfig) package 사용 여부에 따라
+%% tocloft의 옵션을 다르게 지정해야 한다.
+%\usepackage[titles,subfigure]{tocloft} % when you use subfigure package
+\usepackage[titles]{tocloft} % when you don't use subfigure package
+\makeatletter % don't delete me
+\if@snu@ko
+	\renewcommand\cftchappresnum{제~}
+	\renewcommand\cftchapaftersnum{~장}
+	\renewcommand\cftfigpresnum{그림~}
+	\renewcommand\cfttabpresnum{표~}
+\else
+	\renewcommand\cftchappresnum{Chapter~}
+	\renewcommand\cftfigpresnum{Figure~}
+	\renewcommand\cfttabpresnum{Table~}
+\fi
+\makeatother % don't delete me
+\newlength{\mytmplen}
+\settowidth{\mytmplen}{\bfseries\cftchappresnum\cftchapaftersnum}
+\addtolength{\cftchapnumwidth}{\mytmplen}
+\settowidth{\mytmplen}{\bfseries\cftfigpresnum\cftfigaftersnum}
+\addtolength{\cftfignumwidth}{\mytmplen}
+\settowidth{\mytmplen}{\bfseries\cfttabpresnum\cfttabaftersnum}
+\addtolength{\cfttabnumwidth}{\mytmplen}
+%% 목차 양식을 변경하는 코드 끝
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 다른 패키지 로드
+%% http://faq.ktug.or.kr/faq/pdflatex%B0%FAlatex%B5%BF%BD%C3%BB%E7%BF%EB
+%% 필요에 따라 직접 수정 필요
+\ifpdf
+	\input glyphtounicode\pdfgentounicode=1 %type 1 font사용시
+	%\usepackage[pdftex,unicode]{hyperref} % delete me
+	\usepackage[pdftex]{graphicx}
+	%\usepackage[pdftex,svgnames]{xcolor}
+\else
+	%\usepackage[dvipdfmx,unicode]{hyperref} % delete me
+	\usepackage[dvipdfmx]{graphicx}
+	%\usepackage[dvipdfmx,svgnames]{xcolor}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{lipsum} % lorem ipsum
+
+%% \title : 22pt로 나오는 큰 제목
+%% \title* : 16pt로 나오는 작은 제목
+\title{한글 제목: 매우 길고 길고 길고\\ %
+	길고 길고 길고 길고 긴 부제목}
+\title*{English Title: Very\\ Looooooooooooooooooooooooong Subtitle}
+
+%% 저자 이름 Author's(Your) name
+\author{홍길동}
+\author*{홍~길~동} % Insert space for Hangul name.
+%\author{Gildong Hong}
+%\author*{Gildong Hong} % Same as \author.
+
+%% 학번 Student number
+\studentnumber{2000-00000}
+
+%% 지도교수님 성함 Advisor's name
+%% (?) Use Korean name for Korean professor.
+\advisor{홍길동}
+\advisor*{홍~길~동} % Insert space for Hangul name.
+%\advisor{Gildong Hong}
+%\advisor*{Gildong Hong}
+
+%% 학위 수여일 Graduation date
+%% 표지에 적히는 날짜.
+%% 학위 수여일이 아니라 논문 발간년도를 적어야 할 수도 있음.
+\graddate{2010~년~2~월}
+%\graddate{FEBRUARY 2010}
+
+%% 논문 제출일 Submission date
+%% (?) Use Korean date format.
+\submissiondate{2009~년~11~월}
+
+%% 논문 인준일 Approval date
+%% (?) Use Korean date format.
+\approvaldate{2009~년~12~월}
+
+\begin{document}
+\pagenumbering{Roman}
+\makefrontcover
+\makefrontcover
+\makeapproval
+
+\cleardoublepage
+\pagenumbering{roman}
+% 초록 Abstract
+\keyword{서울대학교, 전기공학부, 졸업논문}
+\begin{abstract}
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+서울대학교 전기공학부 졸업논문 예제 파일입니다.
+\end{abstract}
+
+\tableofcontents
+\listoftables
+\listoffigures
+
+\cleardoublepage
+\pagenumbering{arabic}
+
+\chapter{서론}
+서론.
+
+\chapter{본론}
+본론.
+
+\chapter{결론}
+결론.
+
+\begin{thebibliography}{00}
+\addcontentsline{toc}{chapter}{\bibname}
+
+% 영문저널의 경우
+    \bibitem{ref1} B. Jeon and J. Jeong, ``Blocking artifacts
+    reduction in image compression with block boundary discontiunity
+    criterion,'' {\em IEEE Transactions on Circuits and Systems for
+    Video Tech.}, vol. 8, no.3, pp. 345-357, June 1998.
+
+% 영문학술대회의 경우
+    \bibitem{ref2} W. G. Jeon and Y. S. Cho, ``An equalization
+    technique for OFDM and MC-CDMA in a multipath fading channels,''
+    in {\em Proceedings of IEEE Conference on Acoustics, Speech and
+    Signal Processing}, Munich, Germany, May 1997. pp. 2529-2532.
+
+% 국내저널의 경우
+    \bibitem{ref3} 김남훈, 정영철, ``평탄한 통과대역 특성을 갖는
+    새로운 구조의 광도 파로열 격자 라우터,'' {\em 전자공학회논문지},
+    제35권 D편, 제3호, 56-62쪽, 1998년 3월.
+
+% 국내학술대회의 경우
+    \bibitem{ref4} 윤남국, 김수종, ``무선 센서 네트워크에서의 에너지
+    효율적인 그라디언트 기반 라우팅 기법,'' {\em 한국정보과학회
+    2006년 추계학술대회}, 제12권, 제2호, 2006년 10월. pp.
+    1372-1374.
+
+% 단행본의 경우
+    \bibitem{ref5} C. Mead and L. Conway, {\em Introduction to VLSI
+    Systems}, Addison-Wesley, Boston, 1994.
+
+% URL
+    \bibitem{ref6} The SolarMESH Network,
+    http://owl.mcmater.ca/solarmesh
+
+% Technical Report의 경우
+    \bibitem{ref7} K. E. Elliott and C. M. Greene, ``A local adaptive
+    protocol,'' Argonne National Laboratory, Argonne, France,
+    Technical Report 916-1010-BB, 1997.
+
+% 학위논문의 경우
+    \bibitem{ref8} T. Kim, ``Scheduling and Allocation Problems in
+    High-level Synthesis,'' Ph. D. Dissertation, ECE Department,
+    Univ. of Illinois at U-C, 1993.
+
+% 특허의 경우
+    \bibitem{ref9} Sunghyun Choi, ``Wireless MAC protocol based on a
+    hybrid combination of slot allocation, token passing, and
+    polling for isochronous traffic,'' U.S. Patent No. 6,795,418,
+    September 21, 2004.
+
+% 표준
+    \bibitem{ref10} IEEE Std. 802.11-1999, Part 11: Wireless LAN
+    Medium Access Control (MAC) and Physical Layer (PHY)
+    specifications, Reference number ISO/IEC 8802-11:1999(E), IEEE
+    Std. 802.11, 1999 edition, 1999.
+
+\end{thebibliography}
+
+\keywordalt{SNU, electrical engineering, thesis}
+\begin{abstractalt}
+\noindent
+\lipsum[1-3]
+\end{abstractalt}
+
+\acknowledgement
+감사의 글은 생략 가능하고, 형식이 자유이다.
+
+\end{document}
+
