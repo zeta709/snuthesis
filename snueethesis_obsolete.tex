@@ -43,15 +43,11 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% abstract 등에서 사용하는 코드
-%% 처음에는 직접 스타일을 정해주었지만,
 %% 사실 chpater* 명령을 쓰면 훨씬
-%% 쉽게 처리되는 문제다. 처음부터
-%% 이 생각을 못 하는 바람에 삽질한 것.
-%% 참고사항
-%% @afterindentfalse, @afterheading은
-%% 첫 단락 들여쓰기를 방지하기 위한 용도이다.
-%% 단순히 \noindent로 하면 indentfirst 패키지의 영향을
-%% 받지 않게 되므로 이렇게 하였다.
+%% 쉽게 처리되는 문제이지만,
+%% 폰트 크기 규정이
+%% 왔다 갔다 해서
+%% 이런 코드를 완전히 삭제하지 못하였다.
 \renewenvironment{abstract}{%
 	\if@openright \cleardoublepage
 	\else \clearpage \fi

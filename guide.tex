@@ -71,9 +71,9 @@ cleardoublepage 명령을 넣어야
 싶을 수도 있다.
 이 경우 다음과 같이 중간에 \textbackslash author를 재정의하면 간단하게
 해결된다!
-\textbackslash author{Name} \textbackslash author*{Name}
+\textbackslash author\{Name\} \textbackslash author*\{Name\}
 \textbackslash makefrontcover
-\textbackslash author{이름} \textbackslash authro*{이 름}
+\textbackslash author\{이름\} \textbackslash authro*\{이 름\}
 \textbackslash makeapproval
 
 \chapter{석박사 논문 양식}
@@ -105,8 +105,8 @@ cleardoublepage 명령을 넣어야
 되는지 여부를 잘 모르겠다.
 
 \section{인준지}
-영문 논문의 인준지 양식은 \cite{grad}의 pp.14--15,
-국문 논문의 인준지 양식은 \cite{grad}의 pp.36--37을 참고하였다.
+영문 논문의 인준지 양식은 \cite{grad}의 pp.~14--15,
+국문 논문의 인준지 양식은 \cite{grad}의 pp.~36--37을 참고하였다.
 
 인준지부터는 좌우 여백이 늘어난다.
 상단 여백 3cm, 좌우 여백 2.5cm, 하단 여백 2cm으로 맞췄다.
@@ -165,10 +165,10 @@ cleardoublepage 명령을 넣어야
 적고 있는데, 영문 논문의 국문 초록에서는 ``초록''을
 16pt로 적고 있다. 이런 상황을 보면 국문 장 제목은
 16pt, 영문 장 제목은 22pt인데, ``목차'' 류만 특이하게
-국문에서도 22pt라고 해야 하나?
+국문에서도 22pt로 정해진 듯하다.
 
 그리고 국문 양식에서는 ``감사의 글''에 16pt를 사용하고 있다.
-영문 양식에서는 규정이 없느데 22pt를 쓰는 게 맞겠지...
+영문 양식에서는 규정이 없느데 22pt를 써야 될 것 같다.
 
 그리고 장 제목과 절 제목에서 줄 간격을 0으로 하라고
 되어 있는데, 줄 간격 0은 오타인 것 같아서
@@ -194,8 +194,9 @@ cleardoublepage 명령을 넣어야
 이것 역시 줄간격을 제외하고 0.6cm등을 맞추라는 의도
 같은데, 줄간격을 넣고 하다보면 어긋날 수 밖에 없다.
 그리고 \TeX에서는 stretchability와 shrinkability를
-사용해서 간격을 조절하고 있는데, 억지로 맞추는
-것이 필자의 능력에 벗어나는 일이기도 하다.
+사용해서 간격을 조절하고 있는데, 정확하게 맞추는
+것이 말처럼 쉽지도 않고,
+필자의 능력에 벗어나는 일이기도 하다.
 (기존의 템플릿에서도 이것까지 고치진
 않은 것은 마찬가지였다.)
 
@@ -243,6 +244,10 @@ subfigure 패키지 사용 여부에 따라 옵션을 다르게 주어야 한다
 석사,박사 학위논문 작성지침,
 \url{http://eei.snu.ac.kr/bbs/view.php?id=pds&no=170}
 
+\bibitem{aaa} 학위논문 제본 및 인쇄 요령
+
+\bibitem{bbb}
+\url{http://thesisonline.snu.ac.kr}
 \end{thebibliography}
 
 \end{document}
