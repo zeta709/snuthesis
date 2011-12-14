@@ -1,9 +1,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% This is unofficial SNU EE LaTeX class.
 %% 
-%% Author: zeta709
-%% Version: 0.97
-%% Releasedate: 2011/11/27
+%% Author: zeta709 (zeta709@gmail.com)
+%% Version: 0.98
+%% Releasedate: 2011/12/14
 %%
 %% 서울대 전기공학부 졸업논문 LaTeX template이다.
 %% 학사, 석사, 박사 양식을 모두 지원한다.
@@ -32,6 +32,13 @@
 %% 패키지 충돌에 당해본 관계로 이 양식은
 %% 의존 패키지를 최소화하는 방향으로 만들었다.
 %% 잘 되려나 모르겠다.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Change log
+%%
+%% 0.98
+%% 인준지 양식 수정
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -89,7 +96,7 @@
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{snueethesis}
-[2011/11/27 v0.97 unofficial SNU EE LaTeX class]
+[2011/12/14 v0.98 unofficial SNU EE LaTeX class]
 
 \newif\if@snu@under
 \newif\if@snu@ms
@@ -361,6 +368,20 @@
 \def\@snu@approvaldate{\@latex@error{No \noexpand\approvaldate given}\@ehc}
 %\@onlypreamble{\approvaldate}
 
+%% 위원장, 부위원장, 위원
+\def\committeemembers#1#2#3#4#5{%
+	\gdef\@snu@committeememberA{#1}
+	\gdef\@snu@committeememberB{#2}
+	\gdef\@snu@committeememberC{#3}
+	\gdef\@snu@committeememberD{#4}
+	\gdef\@snu@committeememberE{#5}
+}
+\def\@snu@committeememberA{}
+\def\@snu@committeememberB{}
+\def\@snu@committeememberC{}
+\def\@snu@committeememberD{}
+\def\@snu@committeememberE{}
+
 %% Copied def. of \cleardoublepage from memoir.cls
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
   %\hbox{}\thispagestyle{cleared}%
@@ -468,6 +489,19 @@
 \newlength{\@snu@approvaltextheight}
 \setlength{\@snu@approvaltextheight}{\textheight}
 \addtolength{\@snu@approvaltextheight}{15mm}
+%% underline length
+\newlength{\committeenameunderlinelength}
+\setlength{\committeenameunderlinelength}{7cm}
+\newlength{\@snu@underlinetmp}
+\newlength{\@snu@underlinetmpb}
+\newcommand{\committeestyle}[1]{%
+	\setlength{\@snu@underlinetmp}{\committeenameunderlinelength}%
+	\settowidth{\@snu@underlinetmpb}{#1}%
+	\addtolength{\@snu@underlinetmp}{-\@snu@underlinetmpb}%
+	\divide \@snu@underlinetmp by 2 %
+	\underline{\hspace{\@snu@underlinetmp}#1\hspace{\@snu@underlinetmp}}%
+}
+%\newcommand{\@snu@nameline}{\underline{~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}}
 \newcommand{\makeapproval}{
 	\cleardoublepage
 	\if@twocolumn \@restonecoltrue
@@ -537,21 +571,13 @@
 			\fontsize{14pt}{14pt}\selectfont
 			\@snu@approvaldate\\
 			\vfill
-			%위~원~장~:~\underline{~~~~~~~~~~~~~~~~~~~~~~}\\
-			%부위원장~:~\underline{~~~~~~~~~~~~~~~~~~~~~~}\\
-			%위~~~~원~:~\underline{~~~~~~~~~~~~~~~~~~~~~~}\\
-			%\if@snu@ms\else
-			%위~~~~원~:~\underline{~~~~~~~~~~~~~~~~~~~~~~}\\
-			%위~~~~원~:~\underline{~~~~~~~~~~~~~~~~~~~~~~}\\
-			%\fi
-			\newcommand{\@snu@nameline}{\underline{~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}}
 			\begin{tabular}[b]{cc}
-			위 \hfill 원 \hfill 장 & \@snu@nameline\\
-			부위원장 & \@snu@nameline\\
-			위 \hfill 원 & \@snu@nameline\\
+			위 \hfill 원 \hfill 장 & \committeestyle{\@snu@committeememberA} \\
+			부위원장               & \committeestyle{\@snu@committeememberB} \\
+			위 \hfill 원           & \committeestyle{\@snu@committeememberC} \\
 			\if@snu@ms\else
-			위 \hfill 원 & \@snu@nameline\\
-			위 \hfill 원 & \@snu@nameline\\
+			위 \hfill 원           & \committeestyle{\@snu@committeememberD} \\
+			위 \hfill 원           & \committeestyle{\@snu@committeememberE} \\
 			\fi
 			\end{tabular}
 		\fi
