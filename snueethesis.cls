@@ -263,7 +263,7 @@
 %% 4X6배판 : 188 mm X 258 mm
 %% 학부 양식에서는 A4를 사용한다.
 %% 대학원의 hwp, doc 양식은 B5 (JIS)를 쓰고 있다.
-%% LaTeX의 b5paper는 ISO 규격이로 약간 작으므로,
+%% LaTeX의 b5paper는 ISO 규격으로 약간 작으므로,
 %% 직접 고쳐준다.
 
 \if@snu@under
