@@ -113,6 +113,11 @@
 \newif\if@snu@easy %% easy 옵션. 이것저것 대신 해줌.
 \@snu@easyfalse %% 기본값은 false.
 
+\newif\if@snu@fsbp
+\@snu@fsbpfalse
+
+\DeclareOption{4x6}{\@snu@fsbptrue}
+
 \DeclareOption{under}{\@snu@undertrue \@snu@msfalse \@snu@phdfalse}
 \DeclareOption{ms}{\@snu@underfalse \@snu@mstrue \@snu@phdfalse}
 \DeclareOption{master}{\@snu@underfalse \@snu@mstrue \@snu@phdfalse}
@@ -274,10 +279,17 @@
 	% 좌우 여백 2.5 cm
 	% 상단 여백 3 cm, 하단 여백 3.5 cm
 \else
-	\setlength{\paperwidth}{182mm}
-	\setlength{\paperheight}{257mm}
-	\setlength{\textwidth}{132mm} %% 182 mm - (2.5 cm)*2
-	\setlength{\textheight}{192mm} %% 257 mm - 3 cm - 3.5 cm
+	\if@snu@fsbp
+		\setlength{\paperwidth}{188mm}
+		\setlength{\paperheight}{258mm}
+		\setlength{\textwidth}{138mm} %% 188 mm - (2.5 cm)*2
+		\setlength{\textheight}{193mm} %% 258 mm - 3 cm - 3.5 cm
+	\else
+		\setlength{\paperwidth}{182mm}
+		\setlength{\paperheight}{257mm}
+		\setlength{\textwidth}{132mm} %% 182 mm - (2.5 cm)*2
+		\setlength{\textheight}{192mm} %% 257 mm - 3 cm - 3.5 cm
+	\fi
 	% 좌우 여백 2.5 cm
 	% 상단 여백 3 cm, 하단 여백 3.5 cm
 \fi
@@ -407,7 +419,7 @@
 	\enlargethispage{5mm}
 	\thispagestyle{empty}
 	\noindent
-%	\begin{minipage}[][\@snu@covertextheight][s]{\textwidth}
+	%\begin{minipage}[][\@snu@covertextheight][s]{\textwidth}
 	\parbox[][\@snu@covertextheight][s]{\textwidth}{%
 		\centering
 		\normalfont
@@ -471,7 +483,7 @@
 			\fi
 		\fi
 	}
-%	\end{minipage}
+	%\end{minipage}
 	%% 여백 원래대로
 	\newpage
 	\addtolength{\textwidth}{-10mm}
