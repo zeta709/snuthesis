@@ -394,6 +394,12 @@
 \def\@snu@committeememberD{}
 \def\@snu@committeememberE{}
 
+%% 연락처
+\def\phonenumber#1{\gdef\@snu@phonenumber{#1}}
+
+%% 동의서 날짜
+\def\agreementdate#1{\gdef\@snu@agreementdate{#1}}
+
 %% Copied def. of \cleardoublepage from memoir.cls
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
   %\hbox{}\thispagestyle{cleared}%
@@ -601,6 +607,78 @@
 %% center enviornment를 사용하면 하단 여백이 안 맞음.
 %% 여백 설정이 조금만 어긋나면 페이지가 인쇄되지 않음.
 %% minipage와 parbox 중 무엇이 더 나은지 테스트 중.
+}
+
+%% 동의서
+\newcommand{\cl}[1]{\textcircled{\scriptsize #1}}
+\newcommand{\makeagreement}{
+	\let\oldtheenumii\theenumii
+	\let\oldlabelenumii\labelenumii
+	\renewcommand{\theenumii}{\arabic{enumii}}
+	\renewcommand{\labelenumii}{\cl\theenumii}
+	%
+	\cleardoublepage
+	\if@twocolumn \@restonecoltrue
+	\else \@restonecolfalse \fi
+	\onecolumn
+	\enlargethispage{15mm}
+	\thispagestyle{empty}
+	%\setlength{\parskip}{0pt}
+	\begin{center}
+		\fontsize{15}{15}\selectfont
+		{\bfseries 학위논문 원문제공 서비스에 대한 동의서}\par
+	\end{center}
+
+	\fontsize{12}{12}\selectfont
+	본인의 학위논문에 대하여 서울대학교가 아래와 같이 학위논문 저작물을
+	제공하는 것에 동의합니다.
+	\fontsize{11}{11}\selectfont
+	\begin{enumerate}
+		\item 동의사항
+		\begin{enumerate}
+			\item 본인의 논문을 보존이나 인터넷 등을 통한 온라인 서비스 목적으로
+				복제할 경우 저작물의 내용을 변경하지 않는 범위 내에서의 복제를 허용합니다. 
+			\item 본인의 논문을 디지털화하여 인터넷 등 정보통신망을 통한 논문의
+				일부 또는 전부의 복제$\cdot$배포 및 전송 시 무료로 제공하는 것에 동의합니다. 
+		\end{enumerate}
+		\item 개인(저작자)의 의무\par
+			본 논문의 저작권을 타인에게 양도하거나 또는 출판을 허락하는 등
+			동의 내용을 변경하고자 할 때는 소속대학(원)에 공개의 유보 또는 해지를 즉시 통보하겠습니다.
+		\item 서울대학교의 의무
+		\begin{enumerate}
+			\item 서울대학교는 본 논문을 외부에 제공할 경우 저작권 보호장치(DRM)를 사용하여야 합니다. 
+			\item 서울대학교는 본 논문에 대한 공개의 유보나 해지 신청 시 즉시 처리해야 합니다. 
+		\end{enumerate}
+	\end{enumerate}
+	\null\vfill
+	\fontsize{12}{12}\selectfont
+	\begin{flushleft}
+		논문 제목 : \@title \par
+	\end{flushleft}
+	\fontsize{11}{11}\selectfont
+	\begin{flushright}
+		\vspace{11pt}
+		$\vbox{
+			\halign{
+			## & : ## \hfill \cr
+			학\hfill위\hfill구\hfill분	& {\bfseries {\if@snu@ms 석사 \else 박사 \fi}}\cr
+			학\hfill과			& {전기공학부}\cr
+			학\hfill번			& {\@snu@studentnumber}\cr
+			연\hfill락\hfill처		& {\@snu@phonenumber}\cr
+			저\hfill작\hfill자		& {\@author \hspace*{20mm}\small{(인)}}\cr
+		}}$
+	\end{flushright}
+	\begin{center}
+		제~출~일~:~\@snu@agreementdate \par
+		\fontsize{13}{13}\selectfont
+		{\bfseries 서울대학교총장 귀하}
+	\end{center}
+	%
+	\newpage
+	\if@restonecol \twocolumn \fi
+	%
+	\let\theenumii\oldtheenumii
+	\let\labelenumii\oldlabelenumii
 }
 
 
