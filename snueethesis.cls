@@ -2,8 +2,8 @@
 %% This is unofficial SNU EE LaTeX class.
 %% 
 %% Author: zeta709 (zeta709@gmail.com)
-%% Version: 0.98
-%% Releasedate: 2011/12/14
+%% Version: 0.99
+%% Releasedate: 2012/01/19
 %%
 %% 서울대 전기공학부 졸업논문 LaTeX template이다.
 %% 학사, 석사, 박사 양식을 모두 지원한다.
@@ -37,6 +37,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Change log
 %%
+%% 0.99
+%% 4x6 옵션 추가 (사륙배판).
+%% hoffset, voffset을 default로 나둠.
+%% 표지와 인준지의 하단 여백을 5mm 씩 늘림.
+%%   (전기공학부 양식대로 하면 너무 좁음.)
+%%
 %% 0.98
 %% 인준지 양식 수정
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -64,6 +70,9 @@
 %% under: 학사
 %% ms, master: 석사
 %% phd, doctor: 박사
+%%
+%% 4x6: 사륙배판을 사용한다. 석박사 양식에서만 사용가능하다.
+%%      (188 mm x 258 mm)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -96,7 +105,7 @@
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{snueethesis}
-[2011/12/14 v0.98 unofficial SNU EE LaTeX class]
+[2012/01/19 v0.98 unofficial SNU EE LaTeX class]
 
 \newif\if@snu@under
 \newif\if@snu@ms
@@ -271,6 +280,7 @@
 %% LaTeX의 b5paper는 ISO 규격으로 약간 작으므로,
 %% 직접 고쳐준다.
 
+
 \if@snu@under
 	\setlength{\paperwidth}{210mm}
 	\setlength{\paperheight}{297mm}
@@ -293,20 +303,25 @@
 	% 좌우 여백 2.5 cm
 	% 상단 여백 3 cm, 하단 여백 3.5 cm
 \fi
-\setlength{\hoffset}{-1in}
-\setlength{\voffset}{-1in}
+%% hoffset, voffset을 직접 바꾸면
+%% 일부 패키지와 잘 안 맞는다.
+%%\setlength{\hoffset}{-1in}
+%%\setlength{\voffset}{-1in}
 \setlength{\topmargin}{30mm}
+\addtolength{\topmargin}{-1in}
 \setlength{\headheight}{0mm}
 \setlength{\headsep}{0mm} %% 헤더는 사용하지 않음.
 \addtolength{\marginparwidth}{-1.2cm} %% 안 중요함.
 %\setlength{\marginparsep}{3mm} %% 상관 없음.
 \setlength{\oddsidemargin}{25mm}
+\addtolength{\oddsidemargin}{-1in}
 \setlength{\evensidemargin}{\oddsidemargin}
 \setlength{\footskip}{20mm} % 아래 page number 위치
 \ifpdf
 	\setlength{\pdfpagewidth}{\paperwidth}
 	\setlength{\pdfpageheight}{\paperheight}
 \fi
+
 
 %% 줄간격
 \if@snu@under
@@ -412,7 +427,7 @@
 %% 제목의 linespread 1.3
 \newlength{\@snu@covertextheight}
 \setlength{\@snu@covertextheight}{\textheight}
-\addtolength{\@snu@covertextheight}{5mm}
+%\addtolength{\@snu@covertextheight}{5mm} % removed at version 0.99
 \newcommand{\makefrontcover}{%
 	%% 여백 재조정
 	\cleardoublepage
@@ -422,7 +437,7 @@
 	\if@twocolumn \@restonecoltrue
 	\else \@restonecolfalse \fi
 	\onecolumn
-	\enlargethispage{5mm}
+	%\enlargethispage{5mm} % removed at version 0.99
 	\thispagestyle{empty}
 	\noindent
 	%\begin{minipage}[][\@snu@covertextheight][s]{\textwidth}
@@ -506,7 +521,8 @@
 %% 인준지 하단 여백 2 cm (15 mm 작음)
 \newlength{\@snu@approvaltextheight}
 \setlength{\@snu@approvaltextheight}{\textheight}
-\addtolength{\@snu@approvaltextheight}{15mm}
+%\addtolength{\@snu@approvaltextheight}{15mm}
+\addtolength{\@snu@approvaltextheight}{10mm} % modified at version 0.99
 %% underline length
 \newlength{\committeenameunderlinelength}
 \setlength{\committeenameunderlinelength}{7cm}
@@ -525,7 +541,8 @@
 	\if@twocolumn \@restonecoltrue
 	\else \@restonecolfalse \fi
 	\onecolumn
-	\enlargethispage{15mm}
+	%\enlargethispage{15mm}
+	\enlargethispage{10mm} % modified at version 0.99
 	\thispagestyle{empty}
 	\noindent
 %	\begin{minipage}[][\textheight][s]{\textwidth}
