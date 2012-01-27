@@ -536,7 +536,7 @@
 	\underline{\hspace{\@snu@underlinetmp}#1\hspace{\@snu@underlinetmp}}%
 }
 %\newcommand{\@snu@nameline}{\underline{~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}}
-\newcommand{\makeapproval}{
+\newcommand{\makeapproval}{%
 	\cleardoublepage
 	\if@twocolumn \@restonecoltrue
 	\else \@restonecolfalse \fi
@@ -572,8 +572,11 @@
 			\vspace{1cm}\nointerlineskip
 			지~도~교~수~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~(인)
 		\else % 대학원
-			\fontsize{\if@snu@ko 22pt \else 16pt \fi}%
-			{22pt}\selectfont
+			\if@snu@ko
+				\fontsize{22pt}{22pt}\selectfont
+			\else
+				\fontsize{16pt}{16pt}\selectfont
+			\fi
 			\@title\\
 			\vspace{1cm}\nointerlineskip
 			\fontsize{16pt}{16pt}\selectfont
@@ -628,7 +631,7 @@
 
 %% 동의서
 \newcommand{\cl}[1]{\textcircled{\scriptsize #1}}
-\newcommand{\makeagreement}{
+\newcommand{\makeagreement}{%
 	\let\oldtheenumii\theenumii
 	\let\oldlabelenumii\labelenumii
 	\renewcommand{\theenumii}{\arabic{enumii}}
