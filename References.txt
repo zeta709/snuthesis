@@ -1,0 +1,42 @@
+# 참고 자료
+
+이 템플릿을 작성할 당시 참고했던 템플릿들이다.
+KTUG에서 여러 대학과 저널의 논문 양식을 얻을 수 있다.
+http://faq.ktug.or.kr/faq/%C7%D0%C0%A7%B3%ED%B9%AE%BD%BA%C5%B8%C0%CF
+http://faq.ktug.or.kr/faq/PublisherProvidedStyles
+
+1. snu.zip
+출처: http://faq.ktug.or.kr/faq/%C7%D0%C0%A7%B3%ED%B9%AE%BD%BA%C5%B8%C0%CF
+제작자: 민병호
+이것은 KTUG 위키에서 얻은 것이다.
+
+2. snu_eecs_thesis_template.zip
+출처: http://eei.snu.ac.kr/bbs/ee_zboard.php?id=madang&no=18786
+제작자: ?
+이것은 전기공학부(전기정보공학부의 옛이름)의
+글마당(학생 게시판)에서 얻은 것이다. 전기공학부 학생만 접근 가능하다.
+
+3. snu_sample.zip
+출처: http://www.ktug.or.kr/jsboard/read.php?table=operate&no=26016
+(2014년 현재 접근 불가능)
+도와주신 분: 도은이아빠 님, 익명
+이것은 2번 항목의 snu_eecs_thesis_template.zip에 포함된 latex template을
+약간 변경한 것인데, 몇 가지 버그가 고쳐져 있다.
+
+4. snu_under_template.zip
+출처: http://eei.snu.ac.kr/bbs/ee_zboard.php?id=madang&&no=19380
+(현재 원본 파일 다운 불가능)
+이것은 전기공학부 학부용으로 제작한 템플릿이다.
+제작자: jdj
+아마도 카이스트 template 기반으로 변경한 것으로 추정된다.
+
+5. snuthesis.zip
+출처: http://faq.ktug.or.kr/faq/%C7%D0%C0%A7%B3%ED%B9%AE%BD%BA%C5%B8%C0%CF
+http://www.ktug.or.kr/jsboard/read.php?table=operate&no=25562
+제작자: You, Hyun Jo
+이것은 KTUG 위키에서 얻은 것이다.
+아마도 카이스트 template 기반으로 변경한 것으로 추정된다.
+
+6. Snuthesis-kor.zip
+출처: http://ids.snu.ac.kr/wiki/Writing_a_Thesis_in_SNU_Format_Using_LaTex
+제작자: ?
