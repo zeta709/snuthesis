@@ -9,33 +9,7 @@
 % openright : 챕터가 홀수쪽에서 시작
 \documentclass[oneside,ko,phd]{snueethesis}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% 목차 양식을 변경하는 코드
-%% subfigure (subfig) package 사용 여부에 따라
-%% tocloft의 옵션을 다르게 지정해야 한다.
-%\usepackage[titles,subfigure]{tocloft} % when you use subfigure package
-\usepackage[titles]{tocloft} % when you don't use subfigure package
-\makeatletter % don't delete me
-\if@snu@ko
-	\renewcommand\cftchappresnum{제~}
-	\renewcommand\cftchapaftersnum{~장}
-	\renewcommand\cftfigpresnum{그림~}
-	\renewcommand\cfttabpresnum{표~}
-\else
-	\renewcommand\cftchappresnum{Chapter~}
-	\renewcommand\cftfigpresnum{Figure~}
-	\renewcommand\cfttabpresnum{Table~}
-\fi
-\makeatother % don't delete me
-\newlength{\mytmplen}
-\settowidth{\mytmplen}{\bfseries\cftchappresnum\cftchapaftersnum}
-\addtolength{\cftchapnumwidth}{\mytmplen}
-\settowidth{\mytmplen}{\bfseries\cftfigpresnum\cftfigaftersnum}
-\addtolength{\cftfignumwidth}{\mytmplen}
-\settowidth{\mytmplen}{\bfseries\cfttabpresnum\cfttabaftersnum}
-\addtolength{\cfttabnumwidth}{\mytmplen}
-%% 목차 양식을 변경하는 코드 끝
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{snutocstyle} % SNU toc style
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 다른 패키지 로드
@@ -159,6 +133,11 @@
 
 \chapter{결론}
 결론.
+
+\appendix
+
+\chapter{내 부록}
+\lipsum[1-3]
 
 \begin{thebibliography}{00}
 \addcontentsline{toc}{chapter}{\bibname}

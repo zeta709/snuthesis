@@ -1,0 +1,46 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Author: zeta709 (zeta709@gmail.com)
+%% Releasedate: 2017/07/20
+%%
+%% 목차 양식을 변경하는 코드
+%% * subfigure (subfig) package 사용 여부에 따라
+%%   tocloft의 옵션을 다르게 지정해야 한다.
+%% * Chapter 번호가 두 자리 수를 넘어가는 경우 다음과 같이
+%%   필요한 만큼 "9"를 추가하면 된다.
+%%   \settowidth{\mytmplen}{\bfseries\cftchappresnum9\cftchapaftersnum}
+%%   아니면 \cftchapnumwidth를 직접 적당히 고치면 된다.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage[titles,subfigure]{tocloft} % when you use subfigure package
+\usepackage[titles]{tocloft} % when you don't use subfigure package
+\makeatletter
+\if@snu@ko
+	\renewcommand\cftchappresnum{제~}
+	\renewcommand\cftchapaftersnum{~장}
+	\renewcommand\cftfigpresnum{그림~}
+	\renewcommand\cfttabpresnum{표~}
+\else
+	\renewcommand\cftchappresnum{Chapter~}
+	\renewcommand\cftfigpresnum{Figure~}
+	\renewcommand\cfttabpresnum{Table~}
+\fi
+\makeatother
+\newlength{\mytmplen}
+\settowidth{\mytmplen}{\bfseries\cftchappresnum\cftchapaftersnum}
+\addtolength{\cftchapnumwidth}{\mytmplen}
+\settowidth{\mytmplen}{\bfseries\cftfigpresnum\cftfigaftersnum}
+\addtolength{\cftfignumwidth}{\mytmplen}
+\settowidth{\mytmplen}{\bfseries\cfttabpresnum\cfttabaftersnum}
+\addtolength{\cfttabnumwidth}{\mytmplen}
+\makeatletter
+\g@addto@macro\appendix{%
+	\addtocontents{toc}{%
+		\settowidth{\mytmplen}{\bfseries\protect\cftchappresnum\protect\cftchapaftersnum}%
+		\addtolength{\cftchapnumwidth}{-\mytmplen}%
+		\protect\renewcommand{\protect\cftchappresnum}{\appendixname~}%
+		\protect\renewcommand{\protect\cftchapaftersnum}{}%
+		\settowidth{\mytmplen}{\bfseries\protect\cftchappresnum\protect\cftchapaftersnum}%
+		\addtolength{\cftchapnumwidth}{\mytmplen}%
+	}%
+}
+\makeatother

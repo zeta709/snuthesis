@@ -2,8 +2,8 @@
 %% This is unofficial SNU EE LaTeX class.
 %% 
 %% Author: zeta709 (zeta709@gmail.com)
-%% Version: 0.99
-%% Releasedate: 2012/01/19
+%% Version: 0.99.1
+%% Releasedate: 2017/07/20
 %%
 %% 서울대 전기공학부 졸업논문 LaTeX template이다.
 %% 학사, 석사, 박사 양식을 모두 지원한다.
@@ -105,7 +105,7 @@
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{snueethesis}
-[2012/01/19 v0.98 unofficial SNU EE LaTeX class]
+[2017/07/20 v0.99.1 unofficial SNU EE LaTeX class]
 
 \newif\if@snu@under
 \newif\if@snu@ms
@@ -199,6 +199,8 @@
 	\renewcommand{\bibname}{참고문헌} % (report,book)
 	%\renewcommand{\ccname}{cc} % (letter)
 	%\renewcommand{\chaptername}{Chapter} % (report,book)
+	\newcommand{\snuchappre}{제}
+	\newcommand{\snuchappost}{\space장}
 	\renewcommand{\contentsname}{목차} %
 	%\renewcommand{\enclname}{encl} % (letter)
 	\renewcommand{\figurename}{그림} % (for captions)
@@ -217,6 +219,10 @@
 	\newcommand{\studentnumbernamealt}{Student Number}
 	\newcommand{\abstractnamealt}{Abstract}
 	\newcommand{\acknowledgementname}{감사의 글}
+	\g@addto@macro\appendix{%
+		\renewcommand{\snuchappre}{부록}%
+		\renewcommand{\snuchappost}{}%
+	}
 	%% 참고사항
 	%% kotex에 [hangul] 옵션을 주면
 	%% 여기서 변경한 사항이 덮어쓰여진다.
@@ -859,7 +865,7 @@
 	\linespread{1.0}\selectfont
 	\ifnum \c@secnumdepth >\m@ne
 	    \fontsize{16pt}{16pt}\selectfont
-	    \bfseries 제\space\thechapter\space장\space
+	    \bfseries \snuchappre\space\thechapter\snuchappost\space
 	\fi
 	\interlinepenalty\@M
 	\fontsize{16pt}{16pt}\selectfont
