@@ -1,6 +1,6 @@
 snuthesis
 =========
 
-SNU EECS UNOFFICIAL LaTeX template.
+SNU (EECS) UNOFFICIAL LaTeX template.
 
 

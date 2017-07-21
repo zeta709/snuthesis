@@ -1,4 +1,4 @@
-%% This is file `snueethesis.cls`.
+%% This is file `snuthesis.cls`.
 %%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -95,8 +95,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{snueethesis}
-[2017/07/21 v0.99.2 unofficial SNU EE LaTeX class]
+\ProvidesClass{snuthesis}
+[2017/07/22 v0.99.3 unofficial SNU LaTeX class]
 
 \newif\if@snu@under
 \newif\if@snu@ms
@@ -962,6 +962,7 @@
 %% https://github.com/zeta709/snuthesis
 %%
 %% Version history
+%% 0000000, 2017-07-22: 대학과 학부 이름을 매크로로 변경
 %% 66b5ef0, 2017-07-20: 목차의 부록 이름 버그 수정
 %% 91fb8fa, 2012-02-27: 인준지와 동의서 약간 수정
 %% 4cde5a6, 2012-01-19: 표지와 인준지의 하단 여백을 5mm 늘림
@@ -1010,4 +1011,4 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%
-%% End of file `snueethesis.cls`.
+%% End of file `snuthesis.cls`.
