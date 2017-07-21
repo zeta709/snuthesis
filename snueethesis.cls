@@ -7,8 +7,10 @@
 %% Author: zeta709 (zeta709@gmail.com)
 %% https://github.com/zeta709/snuthesis
 %%
-%% 서울대 전기공학부 졸업논문 LaTeX template이다.
+%% 서울대 졸업논문 LaTeX template이다.
 %% 학사, 석사, 박사 양식을 모두 지원한다.
+%% 기본적으로 2011년에 만들고 그 이후엔 버그 수정만 한 것이라
+%% 양식이 잘 맞을지 모르겠다.
 %%
 %% 사실 귀찮아서 글마당에 올라온 기존 template을 쓰려고 했으나,
 %% 결정적으로 저자가 사용하려는 패키지와 기존 template 사이에
@@ -355,6 +357,30 @@
 \def\@titlealt{\@latex@error{No \noexpand\title* given}\@ehc}
 %\@onlypreamble{\title}
 
+%% 대학
+\def\schoolko#1{\gdef\@snu@school@ko{#1}}
+\def\schoolen#1{\gdef\@snu@school@en{#1}}
+\def\schoolensub#1{\gdef\@snu@school@ensub{#1}} % 불필요?
+\if@snu@under
+	\def\@snu@school@ko{서울대학교 공과대학}
+\else
+	\def\@snu@school@ko{서울대학교 대학원}
+\fi
+\def\@snu@school@en{COLLEGE OF ENGINEERING}
+\def\@snu@school@ensub{SEOUL NATIONAL UNIVERSITY}
+%onlypreamble{\schoolko}
+%onlypreamble{\schoolen}
+%onlypreamble{\schoolensub}
+
+%% 학부
+\def\departmentko#1{\gdef\@snu@department@ko{#1}}
+\def\departmenten#1{\gdef\@snu@department@en{#1}}
+\def\@snu@department@ko{전기 컴퓨터 공학부}
+\def\@snu@department@en{DEPARTMENT OF ELECTRICAL ENGINEERING AND\\%
+	COMPUTER SCIENCE}
+%\@onlypreamble{\departmentko}
+%\@onlypreamble{\departmenten}
+
 %% 이름
 \let\@oldauthor=\author
 \def\author{\@ifstar\@snu@authoralt\@oldauthor}
@@ -450,9 +476,9 @@
 			\fontsize{16pt}{16pt}\selectfont
 			\@snu@graddate\\
 			\vspace{4cm}\nointerlineskip
-			서울대학교~공과대학\\
+			\@snu@school@ko\\
 			\vspace{1cm}\nointerlineskip
-			전기공학부\\
+			\@snu@department@ko\\
 			\vspace{1cm}\nointerlineskip
 			\@authoralt
 		\else % 대학원
@@ -483,19 +509,18 @@
 			\vspace{4cm}\nointerlineskip
 			\if@snu@ko
 				\fontsize{16pt}{16pt}\selectfont
-				서울대학교 대학원\\
+				\@snu@school@ko\\
 				\vspace{5mm}\nointerlineskip
 				\fontsize{14pt}{16pt}\selectfont
-				전기 컴퓨터 공학부\\
+				\@snu@department@ko\\
 				\vspace{5mm}\nointerlineskip
 				\fontsize{16pt}{16pt}\selectfont
 				\@authoralt
 			\else
 				\fontsize{14pt}{14pt}\selectfont
-				DEPARTMENT OF ELECTRICAL ENGINEERING AND\\
-				COMPUTER SCIENCE\\
-				COLLEGE OF ENGINEERING\\
-				SEOUL NATIONAL UNIVERSITY
+				\@snu@department@en\\
+				\@snu@school@en\\
+				\@snu@school@ensub
 			\fi
 		\fi
 	}
@@ -555,9 +580,9 @@
 			이~논문을~공학~학사학위~논문으로~제출함\\
 			%\@snu@submissiondate\\
 			\vspace{5cm}\nointerlineskip
-			서울대학교~공과대학\\
+			\@snu@school@ko\\
 			\vspace{1cm}\nointerlineskip
-			전기공학부\\
+			\@snu@department@ko\\
 			\vspace{0.5cm}\nointerlineskip
 			\@authoralt\\
 			\vfill
@@ -589,10 +614,10 @@
 			\@snu@submissiondate\\
 			\vspace{1cm}\nointerlineskip
 			\fontsize{16pt}{16pt}\selectfont
-			서울대학교 대학원\\
+			\@snu@school@ko\\
 			\vspace{5mm}\nointerlineskip
 			\fontsize{14pt}{14pt}\selectfont
-			전기 컴퓨터 공학부\\
+			\@snu@department@ko\\
 			\vspace{5mm}\nointerlineskip
 			\fontsize{16pt}{16pt}\selectfont
 			\@authoralt\\
@@ -677,7 +702,7 @@
 			\halign{
 			## & : ## \hfill \cr
 			학\hfill위\hfill구\hfill분	& {\bfseries {\if@snu@ms 석사 \else 박사 \fi}}\cr
-			학\hfill과			& {전기공학부}\cr
+			학\hfill과			& {\@snu@department@ko}\cr
 			학\hfill번			& {\@snu@studentnumber}\cr
 			연\hfill락\hfill처		& {\@snu@phonenumber}\cr
 			저\hfill작\hfill자		& {\@author \hspace*{20mm}\small{(인)}}\cr
