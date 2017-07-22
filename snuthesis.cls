@@ -8,7 +8,7 @@
 %% https://github.com/zeta709/snuthesis
 %%
 %% 서울대 졸업논문 LaTeX template이다.
-%% 학사, 석사, 박사 양식을 모두 지원한다.
+%% 석사, 박사 양식을 모두 지원하며, 학사는 전기공학부 양식을 지원한다.
 %% 기본적으로 2011년에 만들고 그 이후엔 버그 수정만 한 것이라
 %% 양식이 잘 맞을지 모르겠다.
 %%
@@ -357,6 +357,10 @@
 \def\@titlealt{\@latex@error{No \noexpand\title* given}\@ehc}
 %\@onlypreamble{\title}
 
+%% 학문 (단, 학사는 공학으로 고정)
+\def\academicko#1{\gdef\@snu@academic@ko{#1}}
+\def\@snu@academic@ko{공학}
+
 %% 대학
 \def\schoolko#1{\gdef\@snu@school@ko{#1}}
 \def\schoolen#1{\gdef\@snu@school@en{#1}}
@@ -484,10 +488,10 @@
 		\else % 대학원
 			\fontsize{14pt}{14pt}\selectfont
 			\if@snu@ms
-				\@snu@koen{공학석사학위논문}%
+				\@snu@koen{\@snu@academic@ko석사학위논문}%
 				{M.S. THESIS}\\
 			\else
-				\@snu@koen{공학박사학위논문}%
+				\@snu@koen{\@snu@academic@ko박사학위논문}%
 				{Ph.D. DISSERTATION}\\
 			\fi
 			\vspace{2cm}\nointerlineskip
@@ -607,7 +611,7 @@
 			\vspace{5mm}\nointerlineskip
 			\fontsize{16pt}{16pt}\selectfont
 			이 논문을 %
-			공학\@snu@msphd{석사}{박사} %
+			\@snu@academic@ko\@snu@msphd{석사}{박사} %
 			학위논문으로 제출함\\
 			\vspace{5mm}\nointerlineskip
 			\fontsize{14pt}{14pt}\selectfont
@@ -623,7 +627,7 @@
 			\@authoralt\\
 			\vspace{1cm}\nointerlineskip
 			\@author의 %
-			공학\@snu@msphd{석사}{박사} %
+			\@snu@academic@ko\@snu@msphd{석사}{박사} %
 			학위논문을 인준함\\
 			\vspace{5mm}\nointerlineskip
 			\fontsize{14pt}{14pt}\selectfont
